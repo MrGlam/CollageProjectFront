@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    // Implement login logic (e.g., make an API request to your backend)
+    try {
+      // Send a POST request to your backend login endpoint
+      const response = await axios.post('http://localhost:3001/auth/login', {
+        username,
+        password,
+      });
+
+      // Optionally, handle the response from the backend (e.g., store the token, redirect, etc.)
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors (e.g., display an error message to the user)
+      console.error('Login failed:', error.message);
+    }
   };
 
   return (

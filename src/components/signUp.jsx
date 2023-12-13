@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSignup = async () => {
-    // Implement signup logic (e.g., make an API request to your backend)
+    try {
+      // Send a POST request to your backend signup endpoint
+      const response = await axios.post('http://localhost:3001/auth/signup', {
+        username,
+        password,
+      });
+
+      // Optionally, handle the response from the backend (e.g., show a success message)
+      console.log(response.data);
+    } catch (error) {
+      // Handle errors (e.g., display an error message to the user)
+      console.error('Signup failed:', error.message);
+    }
   };
 
   return (
